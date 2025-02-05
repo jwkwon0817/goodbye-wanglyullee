@@ -11,6 +11,7 @@ export default function Header() {
 
   return (
     <header className={s.base}>
+      타이틀
       <Button.Default
         variant={ButtonVariant.SECONDARY}
         leadingIcon={GlyphIcon.EDIT}
