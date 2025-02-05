@@ -1,13 +1,16 @@
-import Header from './components/Header';
-import LetterBoxList from './components/LetterBoxList';
-import RollingPaperModal from './components/Modal/RollingPaperModal';
+import Background from "./components/Background";
+import Header from "./components/Header";
+import LetterBoxList from "./components/LetterBoxList";
+import RollingPaperModal from "./components/Modal/RollingPaperModal";
 
 function App() {
   return (
     <>
-      <Header />
-      <LetterBoxList />
-      <RollingPaperModal />
+      <Background>
+        <Header />
+        <LetterBoxList />
+        <RollingPaperModal />
+      </Background>
     </>
   );
 }
