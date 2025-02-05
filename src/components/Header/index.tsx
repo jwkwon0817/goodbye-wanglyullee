@@ -1,10 +1,12 @@
 import { Button, ButtonVariant, GlyphIcon } from "@tapie-kr/inspire-react";
 import * as s from "./style.css";
+import { useRollingPaperModalVisible } from "../../stores/RollingPaperModal";
 
 export default function Header() {
+  const rollingPaperModal = useRollingPaperModalVisible();
 
   const handleCreateRollingPaperButton = () => {
-    // TODO: Implement
+    rollingPaperModal.setVisible(true);
   };
 
   return (

@@ -7,7 +7,7 @@ function App() {
   return (
       <>
         <Header />
-        <RollingPaperModal visible={isModalVisible} onClose={() => setIsModalVisible(false)}></RollingPaperModal>
+        <RollingPaperModal></RollingPaperModal>
       </>
   )
 }

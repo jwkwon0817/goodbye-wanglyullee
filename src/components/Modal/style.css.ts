@@ -38,9 +38,11 @@ const slideInFromBottom = keyframes({
 const slideOutToBottom = keyframes({
   "0%": {
     transform: "translate(-50%, -50%)",
+    opacity: 1,
   },
   "100%": {
     transform: "translate(-50%, calc(-50% + 20px))",
+    opacity: 0,
   },
 });
 
