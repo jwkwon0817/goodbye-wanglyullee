@@ -1,10 +1,10 @@
-import LetterBox, {LetterBoxTheme} from "./components/letterBox";
-
+import './styles/global.scss'
 
 function App() {
   return (
     <>
-      <LetterBox content="Hello, World!" from="Wanglyullee" theme={LetterBoxTheme.PINK}/>
+      Good bye, 
+      Wanglyul Lee
     </>
   )
 }
