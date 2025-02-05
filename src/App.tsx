@@ -1,3 +1,4 @@
+import { HStack } from '@tapie-kr/inspire-react';
 import Snowfall from 'react-snowfall';
 import Background from './components/Background';
 import Header from './components/Header';
@@ -9,7 +10,9 @@ function App() {
     <>
       <Background>
         <Header />
-        <LetterBoxList />
+        <HStack fullWidth>
+          <LetterBoxList />
+        </HStack>
         <RollingPaperModal />
         <Snowfall />
       </Background>
