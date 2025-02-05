@@ -29,6 +29,7 @@ export default function RollingPaperModal({ visible, onClose }: ModalProps) {
           <Typo.Moderate weight={TypographyWeight.SEMIBOLD}>
             롤링페이퍼 작성하기
           </Typo.Moderate>
+          <Button.Icon icon={GlyphIcon.CLOSE} />
           <div className={s.form}>
             <div className={s.inputContainer}>
               <Label isEssential>이름</Label>

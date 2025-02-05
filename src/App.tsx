@@ -1,10 +1,13 @@
-import './styles/global.scss'
+import { useState } from "react"
+import Header from "./components/Header"
+import RollingPaperModal from "./components/Modal/RollingPaperModal"
 
 function App() {
+  const [isModalVisible, setIsModalVisible] = useState(true)
   return (
     <>
-      Good bye, 
-      Wanglyul Lee
+      <Header />
+      <RollingPaperModal visible={isModalVisible} onClose={() => setIsModalVisible(false)}></RollingPaperModal>
     </>
   )
 }
