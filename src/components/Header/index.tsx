@@ -1,6 +1,13 @@
-import { Button, ButtonVariant, GlyphIcon } from "@tapie-kr/inspire-react";
+import {
+  Button,
+  ButtonVariant,
+  GlyphIcon,
+  HStack,
+  StackJustify,
+} from "@tapie-kr/inspire-react";
 import * as s from "./style.css";
 import { useRollingPaperModalVisible } from "../../stores/RollingPaperModal";
+import TitleSymbol from "../TitleSymbol";
 
 export default function Header() {
   const rollingPaperModal = useRollingPaperModalVisible();
@@ -10,8 +17,8 @@ export default function Header() {
   };
 
   return (
-    <header className={s.base}>
-      타이틀
+    <HStack fullWidth justify={StackJustify.BETWEEN}>
+      <TitleSymbol />
       <Button.Default
         variant={ButtonVariant.SECONDARY}
         leadingIcon={GlyphIcon.EDIT}
@@ -19,6 +26,6 @@ export default function Header() {
       >
         롤링페이퍼 작성하기
       </Button.Default>
-    </header>
+    </HStack>
   );
 }
