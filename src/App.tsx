@@ -1,11 +1,15 @@
-import LetterBox, {LetterBoxTheme} from "./components/letterBox";
+import { useState } from "react"
+import Header from "./components/Header"
+import RollingPaperModal from "./components/Modal/RollingPaperModal"
 
 function App() {
+  const [isModalVisible, setIsModalVisible] = useState(true)
   return (
-    <>
-      <LetterBox content={"안녕하세요"} from={"신유준"} theme={LetterBoxTheme.PINK}/>
-    </>
+      <>
+        <Header />
+        <RollingPaperModal visible={isModalVisible} onClose={() => setIsModalVisible(false)}></RollingPaperModal>
+      </>
   )
 }
 
-export default App
+export default App;
