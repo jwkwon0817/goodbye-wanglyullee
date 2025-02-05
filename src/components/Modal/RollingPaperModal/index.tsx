@@ -29,7 +29,21 @@ export default function RollingPaperModal() {
   };
 
   const handleSubmit = (handleClose: () => void) => {
-    // TODO: API 호출
+    const data = {
+      author: name,
+      message: content,
+    };
+
+    fetch("https://goodbye.sard.kr/message", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then(() => {
+      alert("[📩] 메시지가 전달되었습니다 :)");
+      handleClose();
+    });
   };
 
   return createPortal(
