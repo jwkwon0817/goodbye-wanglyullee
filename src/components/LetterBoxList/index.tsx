@@ -27,7 +27,7 @@ export default function LetterBoxList() {
       transition={{ duration: 0.2 }}>
       <Stack
         wrap={StackWrap.WRAP}
-        spacing={spacingVars.base}
+        spacing={spacingVars.large}
         justify={StackJustify.START}>
         {Array.from({ length: 10 }).map((_, i) => {
           const randomTheme = themes[Math.floor(Math.random() * themes.length)];
