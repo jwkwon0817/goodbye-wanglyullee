@@ -1,3 +1,4 @@
+import Snowfall from "react-snowfall";
 import Background from "./components/Background";
 import Header from "./components/Header";
 import LetterBoxList from "./components/LetterBoxList";
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <LetterBoxList />
         <RollingPaperModal />
+        <Snowfall />
       </Background>
     </>
   );
