@@ -1,15 +1,15 @@
-import { useState } from "react"
-import Header from "./components/Header"
-import RollingPaperModal from "./components/Modal/RollingPaperModal"
+import Header from './components/Header';
+import LetterBoxList from './components/LetterBoxList';
+import RollingPaperModal from './components/Modal/RollingPaperModal';
 
 function App() {
-  const [isModalVisible, setIsModalVisible] = useState(true)
   return (
-      <>
-        <Header />
-        <RollingPaperModal></RollingPaperModal>
-      </>
-  )
+    <>
+      <Header />
+      <LetterBoxList />
+      <RollingPaperModal />
+    </>
+  );
 }
 
 export default App;
