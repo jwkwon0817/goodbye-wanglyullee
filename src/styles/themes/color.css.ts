@@ -4,10 +4,10 @@ import {
 } from '@vanilla-extract/css';
 
 export const pastelVars = createGlobalThemeContract({
-  pink: '',
-  blue: '',
-  green: '',
-  yellow: '',
+  pink: 'pastel-pink',
+  blue: 'pastel-blue',
+  green: 'pastel-green',
+  yellow: 'pastel-yellow',
 });
 
 createGlobalTheme(':root', pastelVars, {

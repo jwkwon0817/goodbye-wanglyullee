@@ -1,12 +1,5 @@
-import './styles/global.scss'
-
 function App() {
-  return (
-    <>
-      Good bye, 
-      Wanglyul Lee
-    </>
-  )
+  return <>Good bye, Wanglyul Lee</>;
 }
 
-export default App
+export default App;
