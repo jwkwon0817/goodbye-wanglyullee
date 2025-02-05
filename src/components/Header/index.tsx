@@ -5,7 +5,7 @@ import {
   HStack,
   StackJustify,
 } from "@tapie-kr/inspire-react";
-import * as s from "./style.css";
+
 import { useRollingPaperModalVisible } from "../../stores/RollingPaperModal";
 import TitleSymbol from "../TitleSymbol";
 
