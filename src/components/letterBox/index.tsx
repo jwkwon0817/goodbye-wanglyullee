@@ -31,7 +31,10 @@ export default function LetterBox(props: LetterBoxProps) {
         className={s.from}>
         From. {from}
       </Typo.Base>
-      <Typo.Base weight={Weight.SEMIBOLD} color={colorVars.solid.white}>
+      <Typo.Base
+        weight={Weight.SEMIBOLD}
+        color={colorVars.solid.white}
+        className={s.content}>
         {content}
       </Typo.Base>
     </VStack>

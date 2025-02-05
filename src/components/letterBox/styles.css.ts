@@ -7,6 +7,14 @@ export const base = style({
   gap: 4,
   width: 290,
   borderRadius: radiusVars.smooth,
+  cursor: 'pointer',
+  transition: 'transform 0.1s ease-in-out, opacity 0.1s ease-in-out',
+  ':hover': {
+    opacity: 0.9,
+  },
+  ':active': {
+    transform: 'translateY(5px)',
+  },
 });
 
 export const pink = style({
@@ -31,4 +39,9 @@ export const yellow = style({
 
 export const from = style({
   opacity: 0.8,
+  userSelect: 'none',
+});
+
+export const content = style({
+  cursor: 'text',
 });
