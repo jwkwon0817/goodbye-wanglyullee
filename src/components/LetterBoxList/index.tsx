@@ -55,10 +55,16 @@ export default function LetterBoxList() {
     };
 
     calculateColumns();
-    setMounted(true);
+
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 200 + (items.length - 1) * 100);
 
     window.addEventListener('resize', calculateColumns);
-    return () => window.removeEventListener('resize', calculateColumns);
+    return () => {
+      window.removeEventListener('resize', calculateColumns);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
