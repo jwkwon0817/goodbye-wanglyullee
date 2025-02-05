@@ -6,6 +6,7 @@ import {
   Weight,
 } from '@tapie-kr/inspire-react';
 import cn from 'classnames';
+import React from 'react';
 import { LetterBoxTheme } from './shared';
 import * as s from './styles.css';
 
@@ -35,7 +36,12 @@ export default function LetterBox(props: LetterBoxProps) {
         weight={Weight.SEMIBOLD}
         color={colorVars.solid.white}
         className={s.content}>
-        {content}
+        {content.split('\n').map((line, i) => (
+          <React.Fragment key={i}>
+            {line}
+            {i !== content.split('\n').length - 1 && <br />}
+          </React.Fragment>
+        ))}
       </Typo.Base>
     </VStack>
   );

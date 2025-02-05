@@ -5,7 +5,7 @@ import { pastelVars } from '../../styles/themes/color.css.ts';
 export const base = style({
   padding: 15,
   gap: 4,
-  width: 290,
+  width: 300,
   borderRadius: radiusVars.smooth,
   cursor: 'pointer',
   transition: 'transform 0.1s ease-in-out, opacity 0.1s ease-in-out',
