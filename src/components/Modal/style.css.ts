@@ -18,6 +18,17 @@ export const backdrop = style({
   animation: `${fadeIn} 0.4s`,
 });
 
+const slideInFromBottom = keyframes({
+  "0%": {
+    opacity: 0,
+    marginBottom: -50,
+  },
+  "100%": {
+    opacity: 1,
+    marginBottom: 0,
+  },
+});
+
 export const modal = style({
   position: "fixed",
   top: "50%",
@@ -31,18 +42,6 @@ export const modal = style({
   padding: 25,
 
   borderRadius: 25,
+
+  animation: `${slideInFromBottom} 0.4s`,
 });
-
-export const form = style({
-    padding: '17px 0',
-
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20
-})
-
-export const inputContainer = style({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 6
-})
