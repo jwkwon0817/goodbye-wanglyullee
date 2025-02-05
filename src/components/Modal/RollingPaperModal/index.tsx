@@ -2,6 +2,8 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Button,
+  ButtonSize,
+  ButtonVariant,
   GlyphIcon,
   Input,
   Label,
@@ -10,7 +12,7 @@ import {
 } from "@tapie-kr/inspire-react";
 import { ModalProps } from "../shared";
 import { Backdrop, Modal } from "..";
-import * as s from './style.css';
+import * as s from "./style.css";
 
 export default function RollingPaperModal({ visible, onClose }: ModalProps) {
   if (!visible) return null;
@@ -26,10 +28,12 @@ export default function RollingPaperModal({ visible, onClose }: ModalProps) {
     <>
       <Backdrop onClose={onClose}>
         <Modal>
-          <Typo.Moderate weight={TypographyWeight.SEMIBOLD}>
-            롤링페이퍼 작성하기
-          </Typo.Moderate>
-          <Button.Icon icon={GlyphIcon.CLOSE} />
+          <div className={s.top}>
+            <Typo.Moderate weight={TypographyWeight.SEMIBOLD}>
+              롤링페이퍼 작성하기
+            </Typo.Moderate>
+            <Button.Icon size={ButtonSize.SMALL} variant={ButtonVariant.SECONDARY} icon={GlyphIcon.CLOSE} />
+          </div>
           <div className={s.form}>
             <div className={s.inputContainer}>
               <Label isEssential>이름</Label>
