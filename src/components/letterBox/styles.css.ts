@@ -15,8 +15,8 @@ export const pink = style({
 })
 
 export const blue = style({
-    background: pastelVars.blue,
-    boxShadow: `0px 5px 0px 0px ${pastelVars.blue}`,
+    background: pastelVars.surface.pink,
+    boxShadow: `0px 5px 0px 0px ${pastelVars.s}`,
 })
 
 export const green = style({
