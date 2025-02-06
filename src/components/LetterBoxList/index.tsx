@@ -112,7 +112,7 @@ const Item = React.memo(({ i, item }: { i: number; item: LetterBoxItem }) => {
       key={i}
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.2, delay: i * 0.1 }}>
+      transition={{ duration: 0.5, delay: i * 0.05 }}>
       <LetterBox
         from={item.data.author}
         content={item.data.message}
