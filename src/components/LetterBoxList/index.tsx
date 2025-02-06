@@ -1,38 +1,56 @@
 import { spacingVars } from '@tapie-kr/inspire-react';
 import { motion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Masonry from 'react-layout-masonry';
+import { getData } from '../../api/rollingpaper';
 import LetterBox from '../LetterBox';
 import { LetterBoxTheme } from '../LetterBox/shared';
 import * as s from './styles.css';
 
+interface MessageResponse {
+  id: number;
+  author: string;
+  message: string;
+  time: string;
+}
+
 interface LetterBoxItem {
+  data: MessageResponse;
   theme: LetterBoxTheme;
   rotate: number;
 }
 
+const themes = [
+  LetterBoxTheme.PINK,
+  LetterBoxTheme.BLUE,
+  LetterBoxTheme.GREEN,
+  LetterBoxTheme.YELLOW,
+];
+
+const getRandomInt = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 export default function LetterBoxList() {
   const [columnsCount, setColumnsCount] = useState(4);
   const [mounted, setMounted] = useState(false);
+  const [data, setData] = useState<MessageResponse[]>([]);
 
-  // 처음 한 번만 생성되는 아이템 속성들
-  const items = useMemo(() => {
-    const themes = [
-      LetterBoxTheme.PINK,
-      LetterBoxTheme.BLUE,
-      LetterBoxTheme.GREEN,
-      LetterBoxTheme.YELLOW,
-    ];
-
-    const getRandomInt = (min: number, max: number) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+  useEffect(() => {
+    const query = async () => {
+      const response = await getData();
+      setData(response);
     };
+    query();
+  }, []);
 
-    return Array.from({ length: 10 }).map<LetterBoxItem>(() => ({
+  const items = useMemo(() => {
+    return data.map<LetterBoxItem>((item) => ({
+      data: item,
       theme: themes[Math.floor(Math.random() * themes.length)],
       rotate: getRandomInt(-4, 4),
     }));
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     const calculateColumns = () => {
@@ -65,7 +83,7 @@ export default function LetterBoxList() {
       window.removeEventListener('resize', calculateColumns);
       clearTimeout(timer);
     };
-  }, []);
+  }, [items.length]);
 
   return (
     <motion.div
@@ -81,26 +99,26 @@ export default function LetterBoxList() {
           },
         }}>
         {items.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={!mounted ? { y: 20, opacity: 0 } : false}
-            animate={!mounted ? { y: 0, opacity: 1 } : false}
-            transition={{ duration: 0.2, delay: i * 0.1 }}>
-            <LetterBox
-              from={'권지원'}
-              content={
-                i % 2 == 0
-                  ? '감사했습니다. 싸장님\n저는 아미르에요.\n남다르게 태어났죠.'
-                  : '감사했습니다. 싸장님\n저는 아미르에요.\n남다르게 태어났죠.'.repeat(
-                      4,
-                    )
-              }
-              theme={item.theme}
-              rotate={item.rotate}
-            />
-          </motion.div>
+          <Item key={i} i={i} item={item} />
         ))}
       </Masonry>
     </motion.div>
   );
 }
+
+const Item = React.memo(({ i, item }: { i: number; item: LetterBoxItem }) => {
+  return (
+    <motion.div
+      key={i}
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.2, delay: i * 0.1 }}>
+      <LetterBox
+        from={item.data.author}
+        content={item.data.message}
+        theme={item.theme}
+        rotate={item.rotate}
+      />
+    </motion.div>
+  );
+});
