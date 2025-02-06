@@ -16,12 +16,11 @@ export async function createData(from: string, content: string) {
     message: content,
   };
 
-  api
-    .post('/message', request)
-    .then(() => {
-      return true;
-    })
-    .catch(() => {
-      return false;
-    });
+  try {
+    await api.post('/message', request);
+    return true;
+  } catch (error) {
+    console.error('Error creating message:', error);
+    return false;
+  }
 }
