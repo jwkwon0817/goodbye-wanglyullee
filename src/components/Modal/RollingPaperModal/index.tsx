@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
 import {
   Button,
   ButtonSize,
@@ -11,16 +9,19 @@ import {
   Typo,
   TypographyWeight,
   VStack,
-} from "@tapie-kr/inspire-react";
-import Modal from "..";
-import * as s from "./style.css";
-import { useRollingPaperModalVisible } from "../../../stores/RollingPaperModal";
+} from '@tapie-kr/inspire-react';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import Modal from '..';
+import { createData } from '../../../api/rollingpaper';
+import { useRollingPaperModalVisible } from '../../../stores/RollingPaperModal';
+import * as s from './style.css';
 
 export default function RollingPaperModal() {
   const { visible, setVisible } = useRollingPaperModalVisible();
 
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
 
   if (!visible) return null;
 
@@ -29,21 +30,13 @@ export default function RollingPaperModal() {
   };
 
   const handleSubmit = (handleClose: () => void) => {
-    const data = {
-      author: name,
-      message: content,
-    };
-
-    fetch("https://goodbye.sard.kr/message", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then(() => {
-      alert("[📩] 메시지가 전달되었습니다 :)");
-      handleClose();
-    });
+    if (name.trim().length != 0 && content.trim().length != 0) {
+      createData(name, content).then(() => {
+        alert('[📩] 메시지가 전달되었습니다 :)');
+        handleClose();
+        window.location.reload();
+      });
+    }
   };
 
   return createPortal(
@@ -68,7 +61,7 @@ export default function RollingPaperModal() {
               <VStack fullWidth align={StackAlign.START} spacing={6}>
                 <Label isEssential>이름</Label>
                 <Input.Text
-                  placeholder="이름을 입력해주세요"
+                  placeholder='이름을 입력해주세요'
                   onChange={(e) => setName(e.target.value)}
                 />
               </VStack>
@@ -76,7 +69,8 @@ export default function RollingPaperModal() {
                 <Label isEssential>내용</Label>
                 <Input.Paragraph
                   height={180}
-                  placeholder="내용을 입력해주세요"
+                  placeholder='내용을 입력해주세요'
+                  maxLength={300}
                   onChange={(e) => setContent(e.target.value)}
                 />
               </VStack>
@@ -85,13 +79,12 @@ export default function RollingPaperModal() {
               fullWidth
               leadingIcon={GlyphIcon.SEND}
               onClick={() => handleSubmit(handleClose)}
-            >
+              disabled={name.trim().length == 0 || content.trim().length == 0}>
               탈선린 축하해드리기
             </Button.Default>
           </>
-        )}
-      ></Modal>
+        )}></Modal>
     </>,
-    document.body
+    document.body,
   );
 }

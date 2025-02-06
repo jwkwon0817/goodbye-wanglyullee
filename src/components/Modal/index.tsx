@@ -1,6 +1,7 @@
-import * as s from "./style.css";
-import { ModalProps } from "./shared";
-import { useState, useCallback } from "react";
+import cn from 'classnames';
+import { useCallback, useState } from 'react';
+import { ModalProps } from './shared';
+import * as s from './style.css';
 
 export default function Modal({ onClose, render }: ModalProps) {
   const [isClosing, setIsClosing] = useState(false);
@@ -14,13 +15,11 @@ export default function Modal({ onClose, render }: ModalProps) {
 
   return (
     <div
-      className={`${s.backdrop} ${isClosing ? s.backdropExit : ""}`}
-      onClick={handleClose}
-    >
+      className={cn(s.backdrop, isClosing && s.backdropExit)}
+      onClick={handleClose}>
       <div
-        className={`${s.modal} ${isClosing ? s.modalExit : ""}`}
-        onClick={(e) => e.stopPropagation()}
-      >
+        className={cn(s.modal, isClosing && s.modalExit)}
+        onClick={(e) => e.stopPropagation()}>
         {render(handleClose)}
       </div>
     </div>
